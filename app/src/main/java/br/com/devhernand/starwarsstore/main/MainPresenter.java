@@ -45,7 +45,24 @@ public class MainPresenter {
     }
 
 
+    public void addToChartClicked(Product product){
+        view.showWait();
+        service.addToChart(product, new ProductService.AddToChartCallback() {
+            @Override
+            public void onSucess() {
+                view.removeWait();
+                view.onAddToChartSucess();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                view.onFailure(e.getMessage());
+            }
+        });
+    }
+
     public void onStop() {
+        service.clearChart();
         subscriptions.unsubscribe();
     }
 }

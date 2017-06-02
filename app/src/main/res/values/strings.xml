@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">StarWarsStore</string>
     <string name="currency">R$</string>
+    <string name="add_to_chart">Adicionar no carrinho</string>
+    <string name="add_to_char_ok">Produto adicionado no carrinho</string>
 
 </resources>

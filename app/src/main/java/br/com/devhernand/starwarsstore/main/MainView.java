@@ -17,4 +17,6 @@ public interface MainView {
     void onFailure(String appErrorMessage);
 
     void getProductSuccess(List<Product> productList);
+
+    void onAddToChartSucess();
 }
