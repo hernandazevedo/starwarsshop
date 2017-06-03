@@ -79,7 +79,8 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     }
 
     @Override public void onClick(final View v) {
-        onItemClickListener.onItemClick(v, (Product) v.getTag());
+        if(onItemClickListener != null)
+            onItemClickListener.onItemClick(v, (Product) v.getTag());
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
