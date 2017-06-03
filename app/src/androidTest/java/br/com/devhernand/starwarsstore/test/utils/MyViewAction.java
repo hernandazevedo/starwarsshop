@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore;
+package br.com.devhernand.starwarsstore.test.utils;
 
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;

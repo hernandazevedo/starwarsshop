@@ -2,6 +2,7 @@ package br.com.devhernand.starwarsstore.modules;
 
 import javax.inject.Singleton;
 
+import br.com.devhernand.starwarsstore.main.MainInteractorImpl;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
 import br.com.devhernand.starwarsstore.services.ProductEndpoints;
 import br.com.devhernand.starwarsstore.services.ProductService;
@@ -19,7 +20,7 @@ public class ProductModule {
     @Provides
     @Singleton
     @SuppressWarnings("unused")
-    public ProductService providesProductServiceImpl(
+    public ProductService providesProductService(
             ProductEndpoints productEndpoints) {
         return new ProductService(productEndpoints);
     }
@@ -27,8 +28,11 @@ public class ProductModule {
     @Provides
     @Singleton
     @SuppressWarnings("unused")
-    public ProductEndpoints providesProductService(
+    public ProductEndpoints providesProductEndepoints(
             Retrofit retrofit) {
         return retrofit.create(ProductEndpoints.class);
     }
+
+
+
 }

@@ -32,7 +32,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         this.onItemClickListener = onItemClickListener;
     }
 
-    public ProductRecyclerAdapter(List<Product> productList, Context ctx) {
+    public ProductRecyclerAdapter(Context ctx, List<Product> productList) {
         this.productList = productList;
         this.ctx = ctx;
     }

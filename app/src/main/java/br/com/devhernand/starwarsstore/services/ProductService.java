@@ -19,17 +19,17 @@ import rx.schedulers.Schedulers;
 public class ProductService {
 
 
-    private final ProductEndpoints productService;
+    private final ProductEndpoints productEndpoints;
 
     private static List<Product> chartList = new ArrayList<>();
 
-    public ProductService(ProductEndpoints productService) {
-        this.productService = productService;
+    public ProductService(ProductEndpoints productEndpoints) {
+        this.productEndpoints = productEndpoints;
     }
 
     public Subscription getProductList(final GetProductListCallback callback) {
 
-        return productService.listProducts()
+        return productEndpoints.listProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(new Func1<Throwable, Observable<? extends List<Product>>>() {

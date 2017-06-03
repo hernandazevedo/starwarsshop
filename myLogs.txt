@@ -1,0 +1,64 @@
+Starting a Gradle Daemon, 1 incompatible and 11 stopped Daemons could not be reused, use --status for details
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild UP-TO-DATE
+:app:checkDebugManifest
+:app:preReleaseBuild UP-TO-DATE
+:app:prepareComAndroidSupportAnimatedVectorDrawable2500Library
+:app:prepareComAndroidSupportAppcompatV72500Library
+:app:prepareComAndroidSupportCardviewV72500Library
+:app:prepareComAndroidSupportConstraintConstraintLayout102Library
+:app:prepareComAndroidSupportDesign2500Library
+:app:prepareComAndroidSupportPaletteV72500Library
+:app:prepareComAndroidSupportRecyclerviewV72500Library
+:app:prepareComAndroidSupportSupportCompat2500Library
+:app:prepareComAndroidSupportSupportCoreUi2500Library
+:app:prepareComAndroidSupportSupportCoreUtils2500Library
+:app:prepareComAndroidSupportSupportFragment2500Library
+:app:prepareComAndroidSupportSupportMediaCompat2500Library
+:app:prepareComAndroidSupportSupportV42500Library
+:app:prepareComAndroidSupportSupportVectorDrawable2500Library
+:app:prepareComAndroidSupportTransition2500Library
+:app:prepareComGithubSatyanSugar13Library
+:app:prepareIoReactivexRxandroid121Library
+:app:prepareDebugDependencies
+:app:compileDebugAidl
+:app:compileDebugRenderscript
+:app:generateDebugBuildConfig
+:app:generateDebugResValues
+:app:generateDebugResources
+:app:mergeDebugResources
+:app:processDebugManifest
+:app:processDebugResources
+:app:generateDebugSources
+:app:incrementalDebugJavaCompilationSafeguard
+:app:javaPreCompileDebug
+:app:compileDebugJavaWithJavac
+:app:compileDebugNdk UP-TO-DATE
+:app:compileDebugSources
+:app:mergeDebugShaders
+:app:compileDebugShaders
+:app:generateDebugAssets
+:app:mergeDebugAssets
+:app:transformClassesWithDexForDebug
+:app:mergeDebugJniLibFolders
+:app:transformNativeLibsWithMergeJniLibsForDebug
+:app:transformNativeLibsWithStripDebugSymbolForDebug
+:app:processDebugJavaRes UP-TO-DATE
+:app:transformResourcesWithMergeJavaResForDebug
+:app:validateSigningDebug
+:app:packageDebug
+:app:assembleDebug
+:app:checkReleaseManifest
+:app:prepareReleaseDependencies
+:app:compileReleaseAidl
+:app:compileReleaseRenderscript
+:app:generateReleaseBuildConfig
+:app:generateReleaseResValues
+:app:generateReleaseResources
+:app:mergeReleaseResources
+:app:processReleaseManifest
+:app:processReleaseResources
+:app:generateReleaseSources
+:app:incrementalReleaseJavaCompilationSafeguard
+:app:javaPreCompileRelease
+:app:compileReleaseJavaWithJavac

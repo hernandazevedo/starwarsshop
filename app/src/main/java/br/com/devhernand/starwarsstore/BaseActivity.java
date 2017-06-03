@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import br.com.devhernand.starwarsstore.deps.DaggerDeps;
 
 import java.io.File;
-
+import br.com.devhernand.starwarsstore.deps.DaggerDeps;
 import br.com.devhernand.starwarsstore.deps.Deps;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
 
@@ -19,9 +18,10 @@ import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
 public class BaseActivity extends AppCompatActivity{
     Deps deps;
 
-    protected ProgressBar progressBar;
+    public ProgressBar progressBar;
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         File cacheFile = new File(getCacheDir(), "responses");

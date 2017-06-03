@@ -2,20 +2,19 @@ package br.com.devhernand.starwarsstore.main;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.RootMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import br.com.devhernand.starwarsstore.MainActivityIdlingResource;
-import br.com.devhernand.starwarsstore.MyViewAction;
+import br.com.devhernand.starwarsstore.test.utils.MainActivityIdlingResource;
+import br.com.devhernand.starwarsstore.test.utils.MyViewMatcher;
+import br.com.devhernand.starwarsstore.test.utils.MyViewAction;
 import br.com.devhernand.starwarsstore.R;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -56,7 +55,7 @@ public class MainActivityBehaviorTests {
 
         onView(withId(R.id.list)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.fabAddToChart)));
-        onView(withText(R.string.add_to_char_ok)).inRoot(RootMatchers.withDecorView(CoreMatchers.not(is(mActivityRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
+        onView(withText(R.string.add_to_char_ok)).inRoot(MyViewMatcher.findToastInRule(mActivityRule)).check(matches(isDisplayed()));
 
 
     }

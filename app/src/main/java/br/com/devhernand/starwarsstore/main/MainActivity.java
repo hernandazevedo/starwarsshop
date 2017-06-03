@@ -1,11 +1,9 @@
 package br.com.devhernand.starwarsstore.main;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,7 +13,6 @@ import br.com.devhernand.starwarsstore.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.ProductRecyclerAdapter;
 import br.com.devhernand.starwarsstore.model.Product;
-import br.com.devhernand.starwarsstore.services.ProductService;
 
 
 /**
@@ -24,11 +21,11 @@ import br.com.devhernand.starwarsstore.services.ProductService;
 public class MainActivity extends BaseActivity implements MainView{
 
     @Inject
-    public ProductService productService;
+    public MainInteractor mainInteractor;
 
     private RecyclerView list;
 
-    private MainPresenter presenter;
+    public MainPresenterImpl presenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +34,7 @@ public class MainActivity extends BaseActivity implements MainView{
         renderView();
         init();
 
-        presenter = new MainPresenter(productService, this);
+        presenter = new MainPresenterImpl(mainInteractor, this);
         presenter.getProductList();
     }
 
@@ -81,19 +78,8 @@ public class MainActivity extends BaseActivity implements MainView{
     @Override
     public void getProductSuccess(List<Product> productList) {
 
-        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(getApplicationContext(), productList, new ProductRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, Product viewModel) {
-                //
-            }
-        });
-
-        adapter.setOnButtonClickListener(new ProductRecyclerAdapter.OnButtonClickListener() {
-            @Override
-            public void onButtonClick(View view, Product viewModel) {
-                presenter.addToChartClicked(viewModel);
-            }
-        });
+        ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(getApplicationContext(), productList);
+        adapter.setOnButtonClickListener(presenter);
         list.setAdapter(adapter);
 
     }

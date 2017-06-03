@@ -5,18 +5,20 @@ import java.util.List;
 import br.com.devhernand.starwarsstore.model.Product;
 
 /**
- * Created by Nando on 31/05/2017.
+ * Created by Nando on 02/06/2017.
  */
 
 public interface MainView {
 
-    void showWait();
+        void showWait();
 
-    void removeWait();
+        void removeWait();
 
-    void onFailure(String appErrorMessage);
+        void onFailure(String appErrorMessage);
 
-    void getProductSuccess(List<Product> productList);
+        void getProductSuccess(List<Product> productList);
 
-    void onAddToChartSucess();
+        void onAddToChartSucess();
+
+
 }

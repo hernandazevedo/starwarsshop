@@ -1,0 +1,7 @@
+Note: D:\Users\Nando\Documents\GitHub\StarWarsStore\app\src\main\java\br\com\devhernand\starwarsstore\modules\networking\NetworkError.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Exception in thread "png-cruncher_11" java.lang.RuntimeException: Timed out while waiting for slave aapt process, make sure the aapt execute at C:\Users\Nando\AppData\Local\Android\Sdk\build-tools\25.0.0\aapt.exe can run successfully (some anti-virus may block it) or try setting environment variable SLAVE_AAPT_TIMEOUT to a value bigger than 5 seconds
+	at com.android.builder.png.AaptProcess.waitForReady(AaptProcess.java:108)
+	at com.android.builder.png.QueuedCruncher$1.creation(QueuedCruncher.java:121)
+	at com.android.builder.tasks.WorkQueue.run(WorkQueue.java:205)
+	at java.lang.Thread.run(Thread.java:745)
