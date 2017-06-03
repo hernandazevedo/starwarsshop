@@ -8,6 +8,7 @@ import br.com.devhernand.starwarsstore.model.Product;
 
 public interface MainPresenter {
 
+    void buyItemsClicked();
     void getProductList();
     void addToChartClicked(Product product);
     void onStop();

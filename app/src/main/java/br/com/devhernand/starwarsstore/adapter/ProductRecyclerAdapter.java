@@ -22,6 +22,8 @@ import br.com.devhernand.starwarsstore.model.Product;
 
 public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter.ViewHolder> implements View.OnClickListener {
 
+    private int itemLayout = R.layout.item_product;
+
     private List<Product> productList;
     private OnItemClickListener onItemClickListener;
     private OnButtonClickListener onButtonClickListener;
@@ -46,7 +48,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     }
 
     @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
         v.setOnClickListener(this);
         return new ViewHolder(v);
     }
@@ -57,7 +59,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         holder.productname.setText(item.getTitle());
         String price = ctx.getString(R.string.currency) + item.getPrice();
 
-        holder.fabAddToChart.setOnClickListener(new View.OnClickListener() {
+        holder.fabItemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(onButtonClickListener != null) {
@@ -88,7 +90,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         public TextView productname;
         public TextView productprice;
         public TextView productseller;
-        public FloatingActionButton fabAddToChart;
+        public FloatingActionButton fabItemLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -96,8 +98,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             productname = (TextView) itemView.findViewById(R.id.productname);
             productprice = (TextView) itemView.findViewById(R.id.productprice);
             productseller = (TextView) itemView.findViewById(R.id.productseller);
-            fabAddToChart = (FloatingActionButton) itemView.findViewById(R.id.fabAddToChart);
-
+            fabItemLayout = (FloatingActionButton) itemView.findViewById(R.id.fabItemLayout);
         }
     }
 
@@ -113,4 +114,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
     }
 
+    public void setItemLayout(int itemLayout) {
+        this.itemLayout = itemLayout;
+    }
 }

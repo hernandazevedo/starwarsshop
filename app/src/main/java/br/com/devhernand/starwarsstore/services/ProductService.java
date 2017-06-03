@@ -21,7 +21,8 @@ public class ProductService {
 
     private final ProductEndpoints productEndpoints;
 
-    private static List<Product> chartList = new ArrayList<>();
+    private static List<Product> productList = new ArrayList<>();
+
 
     public ProductService(ProductEndpoints productEndpoints) {
         this.productEndpoints = productEndpoints;
@@ -58,7 +59,7 @@ public class ProductService {
 
     public void addToChart(Product product,final AddToChartCallback callback) {
         try {
-            chartList.add(product);
+            productList.add(product);
             callback.onSucess();
         }catch (Exception e){
             callback.onError(e);
@@ -69,9 +70,13 @@ public class ProductService {
         clearChart(null);
     }
 
+    public Integer getChartSize() {
+        return productList.size();
+    }
+
     public void clearChart(final ClearChartCallback callback) {
         try {
-            chartList.clear();
+            productList.clear();
             if(callback != null)
                 callback.onSucess();
         }catch (Exception e){
@@ -79,6 +84,10 @@ public class ProductService {
             if(callback != null)
                 callback.onError(e);
         }
+    }
+
+    public List<Product> getProductsInChart() {
+        return productList;
     }
 
     public interface GetProductListCallback{

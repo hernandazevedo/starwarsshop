@@ -57,7 +57,7 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:layout_gravity="center_vertical"
-                android:id="@+id/fabAddToChart"
+                android:id="@+id/fabItemLayout"
                 style="@style/ShopStyle" />
 
 

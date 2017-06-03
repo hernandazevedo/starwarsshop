@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.com.devhernand.starwarsstore.model.Product;
@@ -68,7 +67,7 @@ public class MainPresenterTests {
         NetworkError e = new NetworkError(new Exception(ERROR_MESSAGE));
         presenter.onError(e);
         verify(mainActivity).removeWait();
-        verify(mainActivity).onFailure(ERROR_MESSAGE);
+        verify(mainActivity).showMessage(ERROR_MESSAGE);
     }
 
     @Test
@@ -82,7 +81,6 @@ public class MainPresenterTests {
     @Test
     public void testOnStop(){
         presenter.onStop();
-        verify(mainInteractor).clearChart();
     }
 
     @Test
@@ -97,7 +95,7 @@ public class MainPresenterTests {
     public void testOnError(){
         Exception e = new Exception(ERROR_MESSAGE);
         presenter.onError(e);
-        verify(mainActivity).onFailure(ERROR_MESSAGE);
+        verify(mainActivity).showMessage(ERROR_MESSAGE);
     }
 
     @Test

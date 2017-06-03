@@ -54,7 +54,7 @@ public class MainActivityBehaviorTests {
         onView(withId(R.layout.activity_main));
 
         onView(withId(R.id.list)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.fabAddToChart)));
+                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.fabItemLayout)));
         onView(withText(R.string.add_to_char_ok)).inRoot(MyViewMatcher.findToastInRule(mActivityRule)).check(matches(isDisplayed()));
 
 

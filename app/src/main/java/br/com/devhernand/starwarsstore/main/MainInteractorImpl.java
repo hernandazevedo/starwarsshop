@@ -1,5 +1,7 @@
 package br.com.devhernand.starwarsstore.main;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.devhernand.starwarsstore.model.Product;
@@ -10,7 +12,7 @@ import rx.Subscription;
  * Created by Nando on 02/06/2017.
  */
 
-public class MainInteractorImpl implements MainInteractor {
+public class MainInteractorImpl implements MainInteractor{
 
     public ProductService productService;
 
@@ -34,4 +36,11 @@ public class MainInteractorImpl implements MainInteractor {
     public void clearChart() {
         productService.clearChart();
     }
+
+
+    @Override
+    public Integer getChartSize() {
+        return productService.getChartSize();
+    }
+
 }

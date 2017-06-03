@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_buy"
+        android:enabled="true"
+        android:title="@string/btn_buy"
+        android:icon="@mipmap/ic_cart"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_transactions"
+        android:enabled="true"
+        android:icon="@mipmap/ic_transactions"
+        android:title="@string/btn_transactions"
+        app:showAsAction="ifRoom" />
+</menu>

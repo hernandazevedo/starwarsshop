@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">StarWarsStore</string>
+    <string name="app_name">Star Wars Shop</string>
     <string name="currency">R$</string>
     <string name="add_to_chart">Adicionar no carrinho</string>
     <string name="add_to_char_ok">Produto adicionado no carrinho</string>
+    <string name="chart_empty_message">O carrinho está vazio</string>
+    <string name="btn_buy">Comprar</string>
+    <string name="btn_transactions">Transações</string>
+    <string name="your_chart">Seu Carrinho</string>
 
 </resources>
