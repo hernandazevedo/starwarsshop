@@ -10,7 +10,7 @@ env:
   global:
     - ANDROID_API_LEVEL_COMPONENT=23
     - ANDROID_API_LEVEL=25
-    - ANDROID_TARGET=android-23
+    - ANDROID_TARGET=android-25
     - ANDROID_BUILD_TOOLS_VERSION=25.0.0
     - ANDROID_ABI=armeabi-v7a
     - ANDROID_TAG=google_apis
@@ -20,10 +20,10 @@ android:
     - tools # to get the new `repository-11.xml`
     - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - platform-tools
-    - build-tools-$ANDROID_API_LEVEL_COMPONENT
-    - android-$ANDROID_API_LEVEL_COMPONENT
+    - build-tools-$ANDROID_API_LEVEL
+    - android-$ANDROID_API_LEVEL
     # For Google Maps API v1
-    - addon-google_apis-google-$ANDROID_API_LEVEL_COMPONENT
+    - addon-google_apis-google-$ANDROID_API_LEVEL
     # Google Play Services
     - extra-google-google_play_services
     # Support library
@@ -32,12 +32,17 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     # Specify at least one system image
-    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL_COMPONENT
+    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
      # Specify at least one system image
-    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL_COMPONENT
+    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+
+before_install:
+ - chmod +x gradlew
+ 
+ 
 script:
   - ./gradlew build jacocoTestReport assembleAndroidTest
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET              
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI    
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
