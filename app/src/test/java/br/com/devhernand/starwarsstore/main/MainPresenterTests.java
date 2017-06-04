@@ -23,7 +23,7 @@ import rx.Subscription;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.spy;
-
+import static org.mockito.Mockito.when;
 
 
 /**
@@ -107,6 +107,20 @@ public class MainPresenterTests {
         Product product = generateProduct();
         presenter.onButtonClick(v,product);
         verify(presenter).addToChartClicked(product);
+    }
+
+    @Test
+    public void testBuyItemsClicked(){
+        when(mainInteractor.getChartSize()).thenReturn(1);
+        presenter.buyItemsClicked();
+        verify(mainActivity).onChartSuccess();
+    }
+
+    @Test
+    public void testBuyItemsClickedEmpty(){
+        when(mainInteractor.getChartSize()).thenReturn(0);
+        presenter.buyItemsClicked();
+        verify(mainActivity).onChartEmpty();
     }
 
     @NonNull

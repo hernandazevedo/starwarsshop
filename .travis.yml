@@ -70,7 +70,7 @@ before_install:
     
  
 script:
-  - ./gradlew build jacocoTestReport assembleAndroidTest
+  #- ./gradlew build jacocoTestReport assembleAndroidTest # With the jacoco-everywhere plugin its not necessary to run both commands.
   
   - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi armeabi-v7a
   

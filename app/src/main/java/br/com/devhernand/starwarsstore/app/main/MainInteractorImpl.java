@@ -16,7 +16,6 @@ public class MainInteractorImpl implements MainInteractor{
         this.productService = productService;
     }
 
-
     @Override
     public Subscription getProductList(ProductService.GetProductListCallback callback) {
 

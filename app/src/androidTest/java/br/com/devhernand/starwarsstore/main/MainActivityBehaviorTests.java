@@ -47,6 +47,7 @@ public class MainActivityBehaviorTests {
     public void registerIntentServiceIdlingResource() {
 
         try {
+            //Unlock the screen; FIXME create some method to reuse this
             uiThreadTestRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -62,6 +63,8 @@ public class MainActivityBehaviorTests {
             throwable.printStackTrace();
         }
 
+
+        //Wait the activity to start completely
         MainActivity activity = mActivityRule.getActivity();
         idlingResource = new MainActivityIdlingResource(activity);
         Espresso.registerIdlingResources(idlingResource);
