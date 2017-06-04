@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Star Wars Shop</string>
-    <string name="currency">R$</string>
+    <string name="currency">R$:  </string>
     <string name="add_to_chart">Adicionar no carrinho</string>
     <string name="add_to_char_ok">Produto adicionado no carrinho</string>
     <string name="chart_empty_message">O carrinho está vazio</string>
+    <string name="transactions_empty_message">Sem histórico de transações</string>
     <string name="btn_buy">Comprar</string>
     <string name="btn_transactions">Transações</string>
     <string name="your_chart">Seu Carrinho</string>
@@ -19,5 +20,11 @@
     <string name="btn_finaliza_shopping">Finalizar Compra</string>
     <string name="msg_required_field">Campo obrigatório</string>
     <string name="msg_payment_sucess">Pagamento realizado com sucesso</string>
+    <string name="total_message">Total R$: %1$s</string>
+    <string name="generic_error_message">Erro ao inicializar o carrinho</string>
+    <string name="btn_ok">OK</string>
+    <string name="transactions_history">Histórico de transações</string>
+
+
 
 </resources>

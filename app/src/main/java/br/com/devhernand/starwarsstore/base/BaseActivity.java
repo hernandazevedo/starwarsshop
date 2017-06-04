@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore;
+package br.com.devhernand.starwarsstore.base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -16,6 +16,7 @@ import com.mobsandgeeks.saripaar.Validator;
 import java.io.File;
 import java.util.List;
 
+import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.deps.DaggerDeps;
 import br.com.devhernand.starwarsstore.deps.Deps;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;

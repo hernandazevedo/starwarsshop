@@ -11,4 +11,5 @@ public interface PaymentPresenter {
     void doPayment(String cardNumber,String name,String month,String year,String cvv);
     void onStop();
 
+    void onCreate();
 }

@@ -33,6 +33,14 @@ public class Transact implements Serializable {
     @SerializedName("exp_date")
     private String expDate;
 
+    private transient String dateTime;
+
+    public String getDateTime() {
+        return dateTime;
+    }
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public Long getValue() {
         return value;

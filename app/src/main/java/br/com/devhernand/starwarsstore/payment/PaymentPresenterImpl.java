@@ -1,7 +1,10 @@
 package br.com.devhernand.starwarsstore.payment;
 
+import android.util.Log;
+
 import java.util.List;
 
+import br.com.devhernand.starwarsstore.BuildConfig;
 import br.com.devhernand.starwarsstore.model.json.Product;
 import br.com.devhernand.starwarsstore.model.json.Transact;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkError;
@@ -39,6 +42,16 @@ public class PaymentPresenterImpl implements PaymentPresenter ,PaymentService.Do
     }
 
     @Override
+    public void onCreate() {
+        Long sumInChart = getSumValue();
+        if(sumInChart > 0) {
+            view.onCreateSuccess(sumInChart.toString());
+        }else{
+            view.onCreateError();
+        }
+    }
+
+    @Override
     public void onStop() {
         subscriptions.unsubscribe();
     }
@@ -46,9 +59,15 @@ public class PaymentPresenterImpl implements PaymentPresenter ,PaymentService.Do
 
     @Override
     public void onSendPaymentSuccess(Transact transactCompleted) {
-        view.removeWait();// not now
-        //TODO save the transaction
-        view.onPaymentSucess();
+        try {
+            interactor.saveTransaction(transactCompleted);
+            view.removeWait();
+            interactor.clearCart();
+            view.onPaymentSucess();
+        }catch (Exception e){
+            Log.d(BuildConfig.LOG_TAG, e.getMessage());
+            view.removeWait();
+        }
     }
 
     @Override

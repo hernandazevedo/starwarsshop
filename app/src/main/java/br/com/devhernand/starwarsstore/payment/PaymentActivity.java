@@ -1,10 +1,12 @@
 package br.com.devhernand.starwarsstore.payment;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.EditText;
@@ -15,8 +17,9 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import javax.inject.Inject;
 
-import br.com.devhernand.starwarsstore.BaseActivity;
+import br.com.devhernand.starwarsstore.base.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
+import br.com.devhernand.starwarsstore.main.MainActivity;
 
 public class PaymentActivity extends BaseActivity implements PaymentView {
 
@@ -40,6 +43,7 @@ public class PaymentActivity extends BaseActivity implements PaymentView {
         init();
 
         presenter = new PaymentPresenterImpl(interactor, this);
+        presenter.onCreate();
     }
 
     public void init(){
@@ -83,7 +87,26 @@ public class PaymentActivity extends BaseActivity implements PaymentView {
 
     @Override
     public void onPaymentSucess() {
-        showToast(getString(R.string.msg_payment_sucess));
+        new AlertDialog.Builder(PaymentActivity.this)
+                .setCancelable(false)
+                .setMessage(getString(R.string.msg_payment_sucess))
+                .setNeutralButton(getString(R.string.btn_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MainActivity.navigate(PaymentActivity.this);
+                    }
+                })
+                .create().show();
+    }
+
+    @Override
+    public void onCreateSuccess(String totalShoppingSum){
+        totalShopping.setText(getString(R.string.total_message,totalShoppingSum).toString());
+    }
+
+    @Override
+    public void onCreateError() {
+        showToast(getString(R.string.generic_error_message));
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.devhernand.starwarsstore.BaseActivity;
+import br.com.devhernand.starwarsstore.base.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.ProductRecyclerAdapter;
 import br.com.devhernand.starwarsstore.model.json.Product;

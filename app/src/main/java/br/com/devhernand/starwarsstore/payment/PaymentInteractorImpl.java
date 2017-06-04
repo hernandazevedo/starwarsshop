@@ -34,4 +34,14 @@ public class PaymentInteractorImpl implements PaymentInteractor{
     public List<Product> getProductsInChart() {
         return productService.getProductsInChart();
     }
+
+    @Override
+    public void saveTransaction(Transact transact) {
+        transactRepository.saveTransaction(transact.getCardNumber(),transact.getCardHolderName(),transact.getValue().toString());
+    }
+
+    @Override
+    public void clearCart() {
+        productService.clearCart();
+    }
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="@dimen/spacing_xsmall">
+
+
+                <TextView
+                    android:id="@+id/tvDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="DateTime"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/tvCardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="CardNumber"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="Name"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent" />
+
+
+                <TextView
+                    android:id="@+id/tvValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="Value"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+</FrameLayout>

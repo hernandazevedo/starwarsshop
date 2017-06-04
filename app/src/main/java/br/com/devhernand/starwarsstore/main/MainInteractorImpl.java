@@ -30,7 +30,7 @@ public class MainInteractorImpl implements MainInteractor{
 
     @Override
     public void clearChart() {
-        productService.clearChart();
+        productService.clearCart();
     }
 
 

@@ -66,15 +66,15 @@ public class ProductService {
         }
     }
 
-    public void clearChart() {
-        clearChart(null);
+    public void clearCart() {
+        clearCart(null);
     }
 
     public Integer getChartSize() {
         return productList.size();
     }
 
-    public void clearChart(final ClearChartCallback callback) {
+    public void clearCart(final ClearChartCallback callback) {
         try {
             productList.clear();
             if(callback != null)

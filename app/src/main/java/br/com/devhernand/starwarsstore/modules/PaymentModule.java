@@ -18,17 +18,10 @@ import dagger.Provides;
  * Created by Nando on 04/06/2017.
  */
 
-@Module(includes = {NetworkModule.class,ProductServiceModule.class, PaymentServiceModule.class})
+@Module(includes = {NetworkModule.class,ProductServiceModule.class, PaymentServiceModule.class,RepositoryModule.class,})
 public class PaymentModule {
 
 
-
-    @Provides
-    @Singleton
-    @SuppressWarnings("unused")
-    public TransactRepository providesTransactionRepository() {
-        return new TransactRepositoryImpl();
-    }
 
     @Provides
     @Singleton

@@ -22,9 +22,9 @@ public class PaymentService {
         this.endpoints = endpoints;
     }
 
-    public Subscription doPayment(Transact transact, final DoPaymentCallback callback) {
+    public Subscription doPayment(final Transact transactToSend, final DoPaymentCallback callback) {
 
-        return endpoints.doPayment(transact)
+        return endpoints.doPayment(transactToSend)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(new Func1<Throwable, Observable<? extends Transact>>() {
@@ -46,7 +46,8 @@ public class PaymentService {
 
                     @Override
                     public void onNext(Transact response) {
-                        callback.onSendPaymentSuccess(response);
+                        //FIXME here its being mocked by Apiary
+                        callback.onSendPaymentSuccess(transactToSend);
                     }
                 });
     }

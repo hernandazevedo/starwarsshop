@@ -14,12 +14,11 @@ public class ChartPresenterImpl implements ChartPresenter{
 
     private final ChartInteractor chartInteractor;
     private final ChartView view;
-    private CompositeSubscription subscriptions;
 
     public ChartPresenterImpl(ChartInteractor chartInteractor, ChartView view) {
         this.chartInteractor = chartInteractor;
         this.view = view;
-        this.subscriptions = new CompositeSubscription();
+
     }
 
 

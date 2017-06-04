@@ -7,11 +7,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:allowBackup="true"
         android:name="com.orm.SugarApp"
-        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_wars"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
@@ -37,7 +36,8 @@
             android:value="br.com.devhernand.starwarsstore.model" />
 
         <activity android:name=".chart.ChartActivity" />
-        <activity android:name=".payment.PaymentActivity"></activity>
+        <activity android:name=".payment.PaymentActivity" />
+        <activity android:name=".transaction.TransactionActivity"></activity>
     </application>
 
 </manifest>

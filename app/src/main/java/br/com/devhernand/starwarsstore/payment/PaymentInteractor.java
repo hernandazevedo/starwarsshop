@@ -14,4 +14,7 @@ import rx.Subscription;
 public interface PaymentInteractor {
     Subscription doPayment(Transact transact, PaymentService.DoPaymentCallback callback);
     List<Product> getProductsInChart();
+    void saveTransaction(Transact transact);
+
+    void clearCart();
 }

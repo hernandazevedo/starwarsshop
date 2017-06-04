@@ -9,4 +9,7 @@ import br.com.devhernand.starwarsstore.base.BaseViewContract;
 public interface PaymentView extends BaseViewContract{
 
     void onPaymentSucess();
+    void onCreateSuccess(String totalShoppingSum);
+
+    void onCreateError();
 }
