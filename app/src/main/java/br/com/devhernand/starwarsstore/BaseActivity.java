@@ -5,11 +5,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+
 import java.io.File;
+import java.util.List;
+
 import br.com.devhernand.starwarsstore.deps.DaggerDeps;
 import br.com.devhernand.starwarsstore.deps.Deps;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
@@ -18,7 +24,7 @@ import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
  * Created by Nando on 31/05/2017.
  */
 
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends AppCompatActivity implements Validator.ValidationListener{
     Deps deps;
 
     public ProgressBar progressBar;
@@ -42,7 +48,7 @@ public class BaseActivity extends AppCompatActivity{
 
     protected void showToast(String text,Integer length){
         Toast.makeText(getApplicationContext(), text,
-                length != null ? length : Toast.LENGTH_LONG).show();
+                length != null ? length : Toast.LENGTH_SHORT).show();
     }
 
     protected void showToast(String text){
@@ -90,4 +96,22 @@ public class BaseActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public void onValidationSucceeded() {
+
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(this);
+
+            if (view instanceof EditText) {
+                ((EditText) view).setError(message);
+            } else {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }

@@ -9,4 +9,5 @@ import br.com.devhernand.starwarsstore.base.BaseViewContract;
 public interface ChartPresenter {
 
     void showProducts();
+    void onGoToPaymentPressed();
 }

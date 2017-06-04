@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:padding="@dimen/spacing_medium">
+
+    <include layout="@layout/content_template" />
+
+    <ScrollView android:id="@+id/scrollViewPayment"  android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <include layout="@layout/toolbar_top" />
+
+            <!-- Max size 19 devido a mascara. Sendo apenas 16 numeros de cartao suportados -->
+            <com.alihafizji.library.CreditCardEditText
+                android:maxLength="19"
+                android:id="@+id/etCardNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textNoSuggestions"
+                android:hint="@string/card_number" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/card_name"
+                android:inputType="textCapCharacters"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:maxLength="2"
+                    android:id="@+id/etMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/month"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:maxLength="4"
+                    android:inputType="number"
+                    android:hint="@string/year"
+                    android:id="@+id/etYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etCvv"
+                android:textSize="20dp"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/cvv" />
+
+            <TextView
+                android:id="@+id/totalShopping"
+                android:textSize="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chart_empty_message" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnPay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/btn_finaliza_shopping"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:textColor="@color/primary"
+                android:background="@color/gray"
+                app:backgroundTint="@color/accent_bright"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

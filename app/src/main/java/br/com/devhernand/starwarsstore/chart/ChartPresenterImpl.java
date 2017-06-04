@@ -2,9 +2,7 @@ package br.com.devhernand.starwarsstore.chart;
 
 import java.util.List;
 
-import br.com.devhernand.starwarsstore.main.MainInteractor;
-import br.com.devhernand.starwarsstore.main.MainView;
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -37,8 +35,10 @@ public class ChartPresenterImpl implements ChartPresenter{
         }else {
             view.onChartEmpty();
         }
+    }
 
-
+    public void onGoToPaymentPressed(){
+        view.navigateToPayment();
     }
 
 }

@@ -3,11 +3,9 @@ package br.com.devhernand.starwarsstore.main;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import br.com.devhernand.starwarsstore.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.ProductRecyclerAdapter;
 import br.com.devhernand.starwarsstore.chart.ChartActivity;
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
 
 
 /**

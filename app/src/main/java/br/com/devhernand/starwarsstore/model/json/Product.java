@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.model;
+package br.com.devhernand.starwarsstore.model.json;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

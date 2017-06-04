@@ -4,9 +4,8 @@ import android.view.View;
 
 import java.util.List;
 
-import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.ProductRecyclerAdapter;
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkError;
 import br.com.devhernand.starwarsstore.services.ProductService;
 import rx.Subscription;
@@ -39,12 +38,10 @@ public class MainPresenterImpl implements MainPresenter,ProductService.GetProduc
 
     @Override
     public void buyItemsClicked() {
-        view.showWait();
 
         if(mainInteractor.getChartSize() > 0){
             view.onChartSuccess();
         }else{
-            view.removeWait();
             view.onChartEmpty();
         }
 

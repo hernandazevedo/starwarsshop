@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkError;
 import br.com.devhernand.starwarsstore.services.ProductService;
 import rx.Subscription;

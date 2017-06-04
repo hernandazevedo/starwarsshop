@@ -3,9 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/cardview_light_background</item>
+        <item name="colorPrimary">@color/primary</item> 
+        <item name="colorPrimaryDark">@color/primary_dark</item> 
+        <item name="colorControlHighlight">@color/accent_translucent</item> 
+        <item name="colorAccent">@color/accent</item>
+        <item name="selectableItemBackground">@drawable/selectable_item_background</item>
+        <item name="android:selectableItemBackground">@drawable/selectable_item_background</item>
     </style>
 
     <style name="ShopStyle">
@@ -41,4 +44,12 @@
         <item name="pressedTranslationZ">12dp</item>
         <item name="rippleColor">@android:color/white</item>
     </style>
+
+    <color name="primary">#2b394f</color>
+    <color name="primary_dark">#152642</color>
+    <color name="accent">#4286f4</color>
+    <color name="accent_translucent">#89d2ed</color>
+    <color name="accent_bright">#4a9bba</color>
+    <color name="gray">#dce5e8</color>
+    <color name="white">#ffffff</color>
 </resources>

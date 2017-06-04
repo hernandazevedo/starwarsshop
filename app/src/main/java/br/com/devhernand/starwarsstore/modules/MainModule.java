@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import br.com.devhernand.starwarsstore.main.MainInteractor;
 import br.com.devhernand.starwarsstore.main.MainInteractorImpl;
-import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
+import br.com.devhernand.starwarsstore.modules.services.ProductServiceModule;
 import br.com.devhernand.starwarsstore.services.ProductService;
 import dagger.Module;
 import dagger.Provides;
@@ -13,7 +13,7 @@ import dagger.Provides;
  * Created by Nando on 02/06/2017.
  */
 
-@Module(includes = {ProductModule.class,})
+@Module(includes = {ProductServiceModule.class,})
 public class MainModule {
 
     @Provides

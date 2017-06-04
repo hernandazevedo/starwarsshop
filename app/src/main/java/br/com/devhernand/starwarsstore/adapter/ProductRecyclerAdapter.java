@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.devhernand.starwarsstore.R;
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
 
 /**
  * Created by Nando on 31/05/2017.

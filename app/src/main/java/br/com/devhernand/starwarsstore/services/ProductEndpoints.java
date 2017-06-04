@@ -2,7 +2,7 @@ package br.com.devhernand.starwarsstore.services;
 
 import java.util.List;
 
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
 import retrofit2.http.GET;
 import rx.Observable;
 

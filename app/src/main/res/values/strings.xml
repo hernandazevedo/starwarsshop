@@ -7,5 +7,17 @@
     <string name="btn_buy">Comprar</string>
     <string name="btn_transactions">Transações</string>
     <string name="your_chart">Seu Carrinho</string>
+    <string name="payment_data">Dados do pagamento</string>
+
+    <string name="card_number">Número do cartão.</string>
+    <string name="expiration">Vencimento.</string>
+    <string name="month">Mês Venc.</string>
+    <string name="year">Ano Venc.</string>
+    <string name="cvv">CVV</string>
+    <string name="card_name">Seu nome como consta no cartão</string>
+    <string name="btn_payment">Realizar Pagamento</string>
+    <string name="btn_finaliza_shopping">Finalizar Compra</string>
+    <string name="msg_required_field">Campo obrigatório</string>
+    <string name="msg_payment_sucess">Pagamento realizado com sucesso</string>
 
 </resources>

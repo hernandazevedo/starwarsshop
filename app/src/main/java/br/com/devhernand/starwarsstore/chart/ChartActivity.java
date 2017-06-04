@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.List;
 
@@ -15,7 +17,8 @@ import javax.inject.Inject;
 import br.com.devhernand.starwarsstore.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.ProductRecyclerAdapter;
-import br.com.devhernand.starwarsstore.model.Product;
+import br.com.devhernand.starwarsstore.model.json.Product;
+import br.com.devhernand.starwarsstore.payment.PaymentActivity;
 
 public class ChartActivity extends BaseActivity implements ChartView {
 
@@ -24,6 +27,7 @@ public class ChartActivity extends BaseActivity implements ChartView {
 
     private RecyclerView listChart;
     private ChartPresenter presenter;
+    private AppCompatButton btnGoToPayment;
 
     public static void navigate(Activity activity){
         Intent intent = new Intent(activity, ChartActivity.class);
@@ -46,12 +50,19 @@ public class ChartActivity extends BaseActivity implements ChartView {
     public void init(){
         listChart.setLayoutManager(new LinearLayoutManager(this));
         initToolbar(getString(R.string.your_chart));
+        btnGoToPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onGoToPaymentPressed();
+            }
+        });
     }
 
     public void renderView() {
         setContentView(R.layout.activity_chart);
         super.initCommonComponents();
         listChart = (RecyclerView) findViewById(R.id.listChart);
+        btnGoToPayment = (AppCompatButton) findViewById(R.id.btnGoToPayment);
     }
 
     @Override
@@ -64,5 +75,10 @@ public class ChartActivity extends BaseActivity implements ChartView {
         ProductRecyclerAdapter adapter = new ProductRecyclerAdapter(getApplicationContext(), productList);
         adapter.setItemLayout(R.layout.item_product_chart);
         listChart.setAdapter(adapter);
+    }
+
+    @Override
+    public void navigateToPayment() {
+        PaymentActivity.navigate(this);
     }
 }

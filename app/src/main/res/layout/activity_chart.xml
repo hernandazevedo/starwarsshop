@@ -13,25 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-            <include layout="@layout/toolbar_top" />
-        </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/toolbar_top" />
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listChart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
             />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnGoToPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/btn_payment"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:textColor="@color/primary"
+            android:background="@color/gray"
+            android:layout_weight="0"
+            app:backgroundTint="@color/accent_bright"/>
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabFinalizeBuy"
-        app:layout_anchor="@id/listChart"
-        app:layout_anchorGravity="bottom|center"
-        style="@style/BuyStyle"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,9 +1,10 @@
-package br.com.devhernand.starwarsstore.modules;
+package br.com.devhernand.starwarsstore.modules.services;
 
 import javax.inject.Singleton;
 
-import br.com.devhernand.starwarsstore.main.MainInteractorImpl;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
+import br.com.devhernand.starwarsstore.services.PaymentEndpoints;
+import br.com.devhernand.starwarsstore.services.PaymentService;
 import br.com.devhernand.starwarsstore.services.ProductEndpoints;
 import br.com.devhernand.starwarsstore.services.ProductService;
 import dagger.Module;
@@ -15,22 +16,22 @@ import retrofit2.Retrofit;
  */
 
 @Module(includes = {NetworkModule.class,})
-public class ProductModule {
+public class PaymentServiceModule {
 
     @Provides
     @Singleton
     @SuppressWarnings("unused")
-    public ProductService providesProductService(
-            ProductEndpoints productEndpoints) {
-        return new ProductService(productEndpoints);
+    public PaymentService proPaymentService(
+            PaymentEndpoints endpoints) {
+        return new PaymentService(endpoints);
     }
 
     @Provides
     @Singleton
     @SuppressWarnings("unused")
-    public ProductEndpoints providesProductEndepoints(
+    public PaymentEndpoints providesEndpoints(
             Retrofit retrofit) {
-        return retrofit.create(ProductEndpoints.class);
+        return retrofit.create(PaymentEndpoints.class);
     }
 
 
