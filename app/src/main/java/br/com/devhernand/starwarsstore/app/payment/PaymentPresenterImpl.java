@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.payment;
+package br.com.devhernand.starwarsstore.app.payment;
 
 import android.util.Log;
 

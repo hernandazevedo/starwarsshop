@@ -2,13 +2,9 @@ package br.com.devhernand.starwarsstore.modules;
 
 import javax.inject.Singleton;
 
-import br.com.devhernand.starwarsstore.chart.ChartInteractor;
-import br.com.devhernand.starwarsstore.chart.ChartInteractorImpl;
-import br.com.devhernand.starwarsstore.modules.services.ProductServiceModule;
 import br.com.devhernand.starwarsstore.repository.TransactRepository;
-import br.com.devhernand.starwarsstore.services.ProductService;
-import br.com.devhernand.starwarsstore.transaction.TransactionInteractor;
-import br.com.devhernand.starwarsstore.transaction.TransactionInteractorImpl;
+import br.com.devhernand.starwarsstore.app.transaction.TransactionInteractor;
+import br.com.devhernand.starwarsstore.app.transaction.TransactionInteractorImpl;
 import dagger.Module;
 import dagger.Provides;
 

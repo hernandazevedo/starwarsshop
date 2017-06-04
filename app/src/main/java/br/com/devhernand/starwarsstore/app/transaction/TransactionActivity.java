@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.transaction;
+package br.com.devhernand.starwarsstore.app.transaction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.TransactRecyclerAdapter;
-import br.com.devhernand.starwarsstore.base.BaseActivity;
+import br.com.devhernand.starwarsstore.app.base.BaseActivity;
 import br.com.devhernand.starwarsstore.model.json.Transact;
 
 

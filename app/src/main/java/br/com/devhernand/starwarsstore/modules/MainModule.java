@@ -2,8 +2,8 @@ package br.com.devhernand.starwarsstore.modules;
 
 import javax.inject.Singleton;
 
-import br.com.devhernand.starwarsstore.main.MainInteractor;
-import br.com.devhernand.starwarsstore.main.MainInteractorImpl;
+import br.com.devhernand.starwarsstore.app.main.MainInteractor;
+import br.com.devhernand.starwarsstore.app.main.MainInteractorImpl;
 import br.com.devhernand.starwarsstore.modules.services.ProductServiceModule;
 import br.com.devhernand.starwarsstore.services.ProductService;
 import dagger.Module;

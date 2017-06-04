@@ -1,9 +1,8 @@
-package br.com.devhernand.starwarsstore.chart;
+package br.com.devhernand.starwarsstore.app.chart;
 
 import java.util.List;
 
 import br.com.devhernand.starwarsstore.model.json.Product;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Nando on 03/06/2017.

@@ -3,7 +3,7 @@ package br.com.devhernand.starwarsstore.test.utils;
 import android.support.test.espresso.IdlingResource;
 import android.widget.ProgressBar;
 
-import br.com.devhernand.starwarsstore.main.MainActivity;
+import br.com.devhernand.starwarsstore.app.main.MainActivity;
 
 /**
  * Created by Nando on 01/06/2017.

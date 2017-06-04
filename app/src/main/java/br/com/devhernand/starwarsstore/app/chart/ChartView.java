@@ -1,8 +1,8 @@
-package br.com.devhernand.starwarsstore.chart;
+package br.com.devhernand.starwarsstore.app.chart;
 
 import java.util.List;
 
-import br.com.devhernand.starwarsstore.base.BaseViewContract;
+import br.com.devhernand.starwarsstore.app.base.BaseViewContract;
 import br.com.devhernand.starwarsstore.model.json.Product;
 
 /**

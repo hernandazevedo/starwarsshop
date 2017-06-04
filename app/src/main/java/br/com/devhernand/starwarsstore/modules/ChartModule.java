@@ -2,8 +2,8 @@ package br.com.devhernand.starwarsstore.modules;
 
 import javax.inject.Singleton;
 
-import br.com.devhernand.starwarsstore.chart.ChartInteractor;
-import br.com.devhernand.starwarsstore.chart.ChartInteractorImpl;
+import br.com.devhernand.starwarsstore.app.chart.ChartInteractor;
+import br.com.devhernand.starwarsstore.app.chart.ChartInteractorImpl;
 import br.com.devhernand.starwarsstore.modules.services.ProductServiceModule;
 import br.com.devhernand.starwarsstore.services.ProductService;
 import dagger.Module;

@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.transaction;
+package br.com.devhernand.starwarsstore.app.transaction;
 
 /**
  * Created by Nando on 04/06/2017.

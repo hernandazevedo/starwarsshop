@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.base;
+package br.com.devhernand.starwarsstore.app.base;
 
 /**
  * Created by Nando on 03/06/2017.

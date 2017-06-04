@@ -5,8 +5,6 @@ import android.support.test.rule.ActivityTestRule;
 
 import org.hamcrest.CoreMatchers;
 
-import br.com.devhernand.starwarsstore.main.MainActivity;
-
 import static org.hamcrest.CoreMatchers.is;
 
 /**

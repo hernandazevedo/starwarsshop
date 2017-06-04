@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- Workaround for the emulator lock screen running instrumentations tests on cloud servers -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
@@ -14,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".app.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,9 +39,9 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="br.com.devhernand.starwarsstore.model" />
 
-        <activity android:name=".chart.ChartActivity" />
-        <activity android:name=".payment.PaymentActivity" />
-        <activity android:name=".transaction.TransactionActivity"></activity>
+        <activity android:name=".app.chart.ChartActivity" />
+        <activity android:name=".app.payment.PaymentActivity" />
+        <activity android:name=".app.transaction.TransactionActivity"></activity>
     </application>
 
 </manifest>

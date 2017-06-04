@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.payment;
+package br.com.devhernand.starwarsstore.app.payment;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -17,9 +17,9 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import javax.inject.Inject;
 
-import br.com.devhernand.starwarsstore.base.BaseActivity;
+import br.com.devhernand.starwarsstore.app.base.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
-import br.com.devhernand.starwarsstore.main.MainActivity;
+import br.com.devhernand.starwarsstore.app.main.MainActivity;
 
 public class PaymentActivity extends BaseActivity implements PaymentView {
 

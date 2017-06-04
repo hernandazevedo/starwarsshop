@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.base;
+package br.com.devhernand.starwarsstore.app.base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

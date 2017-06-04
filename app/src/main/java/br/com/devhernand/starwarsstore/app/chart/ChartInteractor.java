@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.chart;
+package br.com.devhernand.starwarsstore.app.chart;
 
 import java.util.List;
 

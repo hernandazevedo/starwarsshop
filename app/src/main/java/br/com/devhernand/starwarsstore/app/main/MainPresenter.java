@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.main;
+package br.com.devhernand.starwarsstore.app.main;
 
 import br.com.devhernand.starwarsstore.model.json.Product;
 

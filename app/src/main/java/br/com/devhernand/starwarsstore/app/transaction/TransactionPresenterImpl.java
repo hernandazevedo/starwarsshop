@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.transaction;
+package br.com.devhernand.starwarsstore.app.transaction;
 
 import java.util.ArrayList;
 import java.util.List;

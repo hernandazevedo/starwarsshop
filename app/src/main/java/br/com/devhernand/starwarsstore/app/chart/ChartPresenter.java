@@ -1,6 +1,4 @@
-package br.com.devhernand.starwarsstore.chart;
-
-import br.com.devhernand.starwarsstore.base.BaseViewContract;
+package br.com.devhernand.starwarsstore.app.chart;
 
 /**
  * Created by Nando on 03/06/2017.

@@ -2,7 +2,6 @@ package br.com.devhernand.starwarsstore.modules.services;
 
 import javax.inject.Singleton;
 
-import br.com.devhernand.starwarsstore.main.MainInteractorImpl;
 import br.com.devhernand.starwarsstore.modules.networking.NetworkModule;
 import br.com.devhernand.starwarsstore.services.ProductEndpoints;
 import br.com.devhernand.starwarsstore.services.ProductService;

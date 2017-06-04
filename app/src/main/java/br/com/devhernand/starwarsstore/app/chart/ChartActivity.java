@@ -1,4 +1,4 @@
-package br.com.devhernand.starwarsstore.chart;
+package br.com.devhernand.starwarsstore.app.chart;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.devhernand.starwarsstore.base.BaseActivity;
+import br.com.devhernand.starwarsstore.app.base.BaseActivity;
 import br.com.devhernand.starwarsstore.R;
 import br.com.devhernand.starwarsstore.adapter.ProductRecyclerAdapter;
 import br.com.devhernand.starwarsstore.model.json.Product;
-import br.com.devhernand.starwarsstore.payment.PaymentActivity;
+import br.com.devhernand.starwarsstore.app.payment.PaymentActivity;
 
 public class ChartActivity extends BaseActivity implements ChartView {
 

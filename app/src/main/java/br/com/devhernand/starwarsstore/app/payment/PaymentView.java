@@ -1,6 +1,6 @@
-package br.com.devhernand.starwarsstore.payment;
+package br.com.devhernand.starwarsstore.app.payment;
 
-import br.com.devhernand.starwarsstore.base.BaseViewContract;
+import br.com.devhernand.starwarsstore.app.base.BaseViewContract;
 
 /**
  * Created by Nando on 04/06/2017.

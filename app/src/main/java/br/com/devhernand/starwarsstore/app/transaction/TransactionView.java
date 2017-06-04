@@ -1,8 +1,8 @@
-package br.com.devhernand.starwarsstore.transaction;
+package br.com.devhernand.starwarsstore.app.transaction;
 
 import java.util.List;
 
-import br.com.devhernand.starwarsstore.base.BaseViewContract;
+import br.com.devhernand.starwarsstore.app.base.BaseViewContract;
 import br.com.devhernand.starwarsstore.model.json.Transact;
 
 /**

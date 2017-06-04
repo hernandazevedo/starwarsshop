@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="br.com.devhernand.starwarsstore.main.MainActivity">
+    tools:context="br.com.devhernand.starwarsstore.app.main.MainActivity">
 
     <include layout="@layout/content_template" />
 
