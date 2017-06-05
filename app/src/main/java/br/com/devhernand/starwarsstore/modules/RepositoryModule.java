@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
+ * This class should be used to ser all the repositories
  * Created by Nando on 04/06/2017.
  */
 @Module(includes = {})

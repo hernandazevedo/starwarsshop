@@ -7,6 +7,12 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+
+    //To return default values on nonmocked methods including Log.d
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId "br.com.devhernand.starwarsstore"
         minSdkVersion rootProject.ext.minSdkVersion
