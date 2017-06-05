@@ -54,24 +54,6 @@ public class StarWarsStoreBehaviorTests {
     @Before
     public void registerIntentServiceIdlingResource() {
 
-        try {
-            //Unlock the screen; FIXME create some method to reuse this
-            uiThreadTestRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    MainActivity activity = mActivityRule.getActivity();
-                    activity.getWindow()
-                            .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
-                                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-
-                }
-            });
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-
-
         //Wait the activity to start completely
         MainActivity activity = mActivityRule.getActivity();
         idlingResource = new MainActivityIdlingResource(activity);
@@ -83,27 +65,22 @@ public class StarWarsStoreBehaviorTests {
         Espresso.unregisterIdlingResources(idlingResource);
     }
 
-    /**
-     * This test adds on item to the chart
-     */
-    @Test
-    public void test1() {
 
+    @Test
+    public void test1NormalBehavior() {
+
+        /**
+         * This test adds on item to the chart
+         */
 
         onView(withId(R.id.list)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.fabItemLayout)));
         onView(withText(R.string.add_to_char_ok)).inRoot(MyViewMatcher.findToastInRule(mActivityRule)).check(matches(isDisplayed()));
 
 
-    }
-
-
-    /**
-     * This test fill a payment order filling all the fields
-     */
-    @Test
-    public void test2() {
-
+        /**
+         * This test fill a payment order filling all the fields
+         */
 
         onView(withId(R.id.menu_buy)).perform(click());
 
@@ -123,18 +100,21 @@ public class StarWarsStoreBehaviorTests {
         onView(withId(R.id.btnPay)).check(matches(isDisplayed()));
         onView(withId(R.id.btnPay)).perform(click());
 
-    }
+        onView(withText(R.string.btn_ok)).perform(click());
 
+        /** **
+         *
+         * //Check if we have the transaction done before
+         */
 
-    /**
-     * This test check the activity transactions
-     */
-    @Test
-    public void test3(){
+        onView(withId(R.id.menu_transactions)).check(matches(isDisplayed()));
         onView(withId(R.id.menu_transactions)).perform(click());
 
-        //Check if we have the transaction done before
+
         onView(withId(R.id.listTransactions)).check(new RecyclerViewItemCountAssertion(greaterThan(0)));
+
+
     }
+
 
 }
