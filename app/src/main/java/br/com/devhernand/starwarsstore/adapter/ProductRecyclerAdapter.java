@@ -20,27 +20,17 @@ import br.com.devhernand.starwarsstore.model.json.Product;
  * Created by Nando on 31/05/2017.
  */
 
-public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter.ViewHolder> implements View.OnClickListener {
+public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter.ViewHolder> {
 
     private int itemLayout = R.layout.item_product;
 
     private List<Product> productList;
-    private OnItemClickListener onItemClickListener;
     private OnButtonClickListener onButtonClickListener;
     private Context ctx;
-    public ProductRecyclerAdapter(Context ctx, List<Product> productList,OnItemClickListener onItemClickListener) {
-        this.ctx = ctx;
-        this.productList = productList;
-        this.onItemClickListener = onItemClickListener;
-    }
 
     public ProductRecyclerAdapter(Context ctx, List<Product> productList) {
         this.productList = productList;
         this.ctx = ctx;
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
     }
 
     public void setOnButtonClickListener(OnButtonClickListener onButtonClickListener) {
@@ -49,7 +39,6 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
     @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
-        v.setOnClickListener(this);
         return new ViewHolder(v);
     }
 
@@ -78,11 +67,6 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
     @Override public int getItemCount() {
         return productList.size();
-    }
-
-    @Override public void onClick(final View v) {
-        if(onItemClickListener != null)
-            onItemClickListener.onItemClick(v, (Product) v.getTag());
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {

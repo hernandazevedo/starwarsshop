@@ -1,5 +1,7 @@
 package br.com.devhernand.starwarsstore.modules.networking;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -24,19 +26,20 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class NetworkModule {
 
     File cacheFile;
-
+    Cache cache = null;
     public NetworkModule(File cacheFile) {
         this.cacheFile = cacheFile;
     }
 
+
     @Provides
     @Singleton
     Retrofit provideCall() {
-        Cache cache = null;
+
         try {
             cache = new Cache(cacheFile, 10 * 1024 * 1024);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d(BuildConfig.LOG_TAG,e.getMessage());
         }
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

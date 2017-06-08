@@ -54,11 +54,13 @@ public class StarWarsStoreBehaviorTests {
     @Before
     public void registerIntentServiceIdlingResource() {
 
+        unlockScreen();
         //Wait the activity to start completely
         MainActivity activity = mActivityRule.getActivity();
         idlingResource = new MainActivityIdlingResource(activity);
         Espresso.registerIdlingResources(idlingResource);
     }
+
 
     @After
     public void unregisterIntentServiceIdlingResource() {
@@ -88,7 +90,7 @@ public class StarWarsStoreBehaviorTests {
         onView(withId(R.id.btnGoToPayment)).perform(click());
 
         onView(withId(R.id.etCardNumber)).check(matches(isDisplayed()));
-        onView(withId(R.id.etCardNumber)).perform(click(), replaceText("1234123412341234"));
+        onView(withId(R.id.etCardNumber)).perform(click(), replaceText("1234-1234-1234-1234"));
         onView(withId(R.id.etName)).check(matches(isDisplayed()));
         onView(withId(R.id.etName)).perform(click(), replaceText("HERNAND"));
         onView(withId(R.id.etMonth)).check(matches(isDisplayed()));
@@ -116,5 +118,23 @@ public class StarWarsStoreBehaviorTests {
 
     }
 
+    private void unlockScreen() {
+        try {
+            //Unlock the screen;
+            uiThreadTestRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity activity = mActivityRule.getActivity();
+                    activity.getWindow()
+                            .addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+                }
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
 
 }

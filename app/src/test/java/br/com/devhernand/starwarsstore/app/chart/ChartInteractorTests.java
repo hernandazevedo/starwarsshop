@@ -48,6 +48,7 @@ public class ChartInteractorTests {
         verify(productService).getProductsInChart();
         Assert.assertNotNull(returnList);
         Assert.assertFalse(returnList.isEmpty());
+        Assert.assertEquals(productList.get(0).getZipcode(), returnList.get(0).getZipcode());
 
     }
 
@@ -61,6 +62,7 @@ public class ChartInteractorTests {
         product.setThumbnailHd("http://sometumbnail.com/1234");
         product.setTitle("Product title");
         product.setZipcode("20230260");
+
         return product;
     }
 
