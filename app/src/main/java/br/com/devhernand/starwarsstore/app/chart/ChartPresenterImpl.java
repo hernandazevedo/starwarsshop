@@ -30,9 +30,10 @@ public class ChartPresenterImpl implements ChartPresenter{
 
         if(productList != null && !productList.isEmpty()){
             view.onChartSuccess(productList);
-        }else {
-            view.onChartEmpty();
         }
+//        else {
+//            view.onChartEmpty();
+//        }
     }
 
     public void onGoToPaymentPressed(){

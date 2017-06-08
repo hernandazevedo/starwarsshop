@@ -64,10 +64,10 @@ public class MainInteractorTests {
 
             }
 
-            @Override
-            public void onError(Exception e) {
-
-            }
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
         };
         Product product = new Product();
         interactor.addToChart(product,cb);

@@ -3,6 +3,7 @@ package br.com.devhernand.starwarsstore.modules.networking;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,58 +28,82 @@ public class NetworkError extends Throwable {
         return error.getMessage();
     }
 
-    public boolean isAuthFailure() {
-        return error instanceof HttpException &&
-                ((HttpException) error).code() == HTTP_UNAUTHORIZED;
-    }
+//    public boolean isAuthFailure() {
+//        return error instanceof HttpException &&
+//                ((HttpException) error).code() == HTTP_UNAUTHORIZED;
+//    }
 
-    public boolean isResponseNull() {
-        return error instanceof HttpException && ((HttpException) error).response() == null;
-    }
+//    public boolean isResponseNull() {
+//        return error instanceof HttpException && ((HttpException) error).response() == null;
+//    }
 
-    public String getAppErrorMessage() {
-        if (this.error instanceof IOException) return NETWORK_ERROR_MESSAGE;
-        if (!(this.error instanceof HttpException)) return DEFAULT_ERROR_MESSAGE;
-        retrofit2.Response<?> response = ((HttpException) this.error).response();
-        if (response != null) {
-            String status = getJsonStringFromResponse(response);
-            if (!TextUtils.isEmpty(status)) return status;
+//    public String getAppErrorMessage() {
+//        if (this.error instanceof IOException) return NETWORK_ERROR_MESSAGE;
+//        if (!(this.error instanceof HttpException)) return DEFAULT_ERROR_MESSAGE;
+//        retrofit2.Response<?> response = ((HttpException) this.error).response();
+//        if (response != null) {
+//            String status = getJsonStringFromResponse(response);
+//            if (!TextUtils.isEmpty(status)) return status;
+//
+//            Map<String, List<String>> headers = response.headers().toMultimap();
+//            if (headers.containsKey(ERROR_MESSAGE_HEADER))
+//                return headers.get(ERROR_MESSAGE_HEADER).get(0);
+//        }
+//
+//        return DEFAULT_ERROR_MESSAGE;
+//    }
 
-            Map<String, List<String>> headers = response.headers().toMultimap();
-            if (headers.containsKey(ERROR_MESSAGE_HEADER))
-                return headers.get(ERROR_MESSAGE_HEADER).get(0);
-        }
+//    public String getJsonStringFromResponse(final retrofit2.Response<?> response) {
+//        try {
+//            String jsonString = response.errorBody().string();
+//            Response errorResponse = new Gson().fromJson(jsonString, Response.class);
+//            return errorResponse.status;
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
-        return DEFAULT_ERROR_MESSAGE;
-    }
+//    public Throwable getError() {
+//        return error;
+//    }
 
-    protected String getJsonStringFromResponse(final retrofit2.Response<?> response) {
-        try {
-            String jsonString = response.errorBody().string();
-            Response errorResponse = new Gson().fromJson(jsonString, Response.class);
-            return errorResponse.status;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        NetworkError that = (NetworkError) o;
+//
+//        return error != null ? error.equals(that.error) : that.error == null;
+//
+//    }
 
-    public Throwable getError() {
-        return error;
-    }
+//    @Override
+//    public int hashCode() {
+//        return error != null ? error.hashCode() : 0;
+//    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        NetworkError that = (NetworkError) o;
+//
+//    public class Response {
+//        @SerializedName("status")
+//        public String status;
+//
+//        public void setStatus(String status) {
+//            this.status = status;
+//        }
+//
+//        public String getStatus() {
+//            return status;
+//        }
+//
+//        @SuppressWarnings({"unused", "used by Retrofit"})
+//        public Response() {
+//        }
+//
+//        public Response(String status) {
+//            this.status = status;
+//        }
+//    }
 
-        return error != null ? error.equals(that.error) : that.error == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return error != null ? error.hashCode() : 0;
-    }
 }

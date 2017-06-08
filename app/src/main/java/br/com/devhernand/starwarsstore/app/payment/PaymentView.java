@@ -11,5 +11,4 @@ public interface PaymentView extends BaseViewContract{
     void onPaymentSucess();
     void onCreateSuccess(String totalShoppingSum);
 
-    void onCreateError();
 }

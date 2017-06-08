@@ -75,10 +75,10 @@ public class MainPresenterImpl implements MainPresenter,ProductService.GetProduc
         view.onAddToChartSucess();
     }
 
-    @Override
-    public void onError(Exception e) {
-        view.showMessage(e.getMessage());
-    }
+//    @Override
+//    public void onError(Exception e) {
+//        view.showMessage(e.getMessage());
+//    }
 
     @Override
     public void onButtonClick(View view, Product viewModel) {

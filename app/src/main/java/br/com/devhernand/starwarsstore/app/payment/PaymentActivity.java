@@ -105,11 +105,6 @@ public class PaymentActivity extends BaseActivity implements PaymentView {
     }
 
     @Override
-    public void onCreateError() {
-        showToast(getString(R.string.generic_error_message));
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         presenter.onStop();

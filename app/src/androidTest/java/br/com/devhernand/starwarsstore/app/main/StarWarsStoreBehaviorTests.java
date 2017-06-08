@@ -33,6 +33,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.is;
 import static android.support.test.espresso.action.ViewActions.click;
 import static org.hamcrest.Matchers.greaterThan;
+import static android.support.test.espresso.Espresso.pressBack;
 
 /**
  * Created by Nando on 01/06/2017.
@@ -75,15 +76,20 @@ public class StarWarsStoreBehaviorTests {
          * This test adds on item to the chart
          */
 
+        onView(withId(R.id.menu_buy)).perform(click());
+
+        onView(withText(R.string.chart_empty_message)).inRoot(MyViewMatcher.findToastInRule(mActivityRule)).check(matches(isDisplayed()));
+
         onView(withId(R.id.list)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.fabItemLayout)));
-        onView(withText(R.string.add_to_char_ok)).inRoot(MyViewMatcher.findToastInRule(mActivityRule)).check(matches(isDisplayed()));
+
 
 
         /**
          * This test fill a payment order filling all the fields
          */
 
+        onView(withId(R.id.menu_buy)).check(matches(isDisplayed()));
         onView(withId(R.id.menu_buy)).perform(click());
 
         onView(withId(R.id.btnGoToPayment)).check(matches(isDisplayed()));
@@ -114,6 +120,7 @@ public class StarWarsStoreBehaviorTests {
 
 
         onView(withId(R.id.listTransactions)).check(new RecyclerViewItemCountAssertion(greaterThan(0)));
+        pressBack();
 
 
     }

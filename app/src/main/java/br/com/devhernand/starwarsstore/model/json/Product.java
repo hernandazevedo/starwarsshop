@@ -87,15 +87,4 @@ public class Product implements Serializable{
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "title='" + title + '\'' +
-                ", price=" + price +
-                ", zipcode='" + zipcode + '\'' +
-                ", seller='" + seller + '\'' +
-                ", thumbnailHd='" + thumbnailHd + '\'' +
-                ", date='" + date + '\'' +
-                '}';
-    }
 }

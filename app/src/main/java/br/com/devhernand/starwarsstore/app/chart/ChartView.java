@@ -11,7 +11,7 @@ import br.com.devhernand.starwarsstore.model.json.Product;
 
 public interface ChartView extends BaseViewContract{
 
-    void onChartEmpty();
+//    void onChartEmpty();
     void onChartSuccess(List<Product> productList);
     void navigateToPayment();
 }

@@ -49,6 +49,7 @@ public class ChartInteractorTests {
         Assert.assertNotNull(returnList);
         Assert.assertFalse(returnList.isEmpty());
         Assert.assertEquals(productList.get(0).getZipcode(), returnList.get(0).getZipcode());
+        Assert.assertEquals(productList.get(0).getDate(), returnList.get(0).getDate());
 
     }
 

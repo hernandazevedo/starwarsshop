@@ -1,7 +1,5 @@
 package br.com.devhernand.starwarsstore.modules.networking;
 
-import android.util.Log;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -36,11 +34,11 @@ public class NetworkModule {
     @Singleton
     Retrofit provideCall() {
 
-        try {
+//        try {
             cache = new Cache(cacheFile, 10 * 1024 * 1024);
-        } catch (Exception e) {
-            Log.d(BuildConfig.LOG_TAG,e.getMessage());
-        }
+//        } catch (Exception e) {
+//            Log.d(BuildConfig.LOG_TAG,e.getMessage());
+//        }
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {

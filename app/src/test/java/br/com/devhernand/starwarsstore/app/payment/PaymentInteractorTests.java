@@ -53,6 +53,8 @@ public class PaymentInteractorTests {
         PaymentService.DoPaymentCallback callback = getCallbackMock();
         interactor.doPayment(getTransact(), callback);
         verify(paymentService).doPayment(any(Transact.class),any(PaymentService.DoPaymentCallback.class));
+        Assert.assertNotNull(transact.getCvv());
+        Assert.assertNotNull(transact.getExpDate());
     }
 
     @NonNull

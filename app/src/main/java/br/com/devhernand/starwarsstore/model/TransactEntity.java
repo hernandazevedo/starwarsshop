@@ -18,14 +18,6 @@ public class TransactEntity extends SugarRecord<TransactEntity> implements Seria
     private String name;
 
     public TransactEntity(){
-
-    }
-
-    public TransactEntity(String value, String dateTime, String cardNumber, String name) {
-        this.value = value;
-        this.dateTime = dateTime;
-        this.cardNumber = cardNumber;
-        this.name = name;
     }
 
     public String getValue() {
@@ -60,13 +52,4 @@ public class TransactEntity extends SugarRecord<TransactEntity> implements Seria
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "TransactEntity{" +
-                "value='" + value + '\'' +
-                ", dateTime='" + dateTime + '\'' +
-                ", cardNumber='" + cardNumber + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

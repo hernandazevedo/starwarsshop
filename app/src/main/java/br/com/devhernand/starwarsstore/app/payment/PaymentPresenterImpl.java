@@ -46,8 +46,6 @@ public class PaymentPresenterImpl implements PaymentPresenter ,PaymentService.Do
         Long sumInChart = getSumValue();
         if(sumInChart > 0) {
             view.onCreateSuccess(sumInChart.toString());
-        }else{
-            view.onCreateError();
         }
     }
 

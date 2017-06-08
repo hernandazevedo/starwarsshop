@@ -71,16 +71,6 @@ public class PaymentPresenterTests {
 
     }
 
-    @Test
-    public void onCreateSumZero() throws Exception {
-
-        List<Product> productList = new ArrayList<>();
-        productList.add(generateProduct(0L));
-        when(interactor.getProductsInChart()).thenReturn(productList);
-        presenter.onCreate();
-        verify(view).onCreateError();
-
-    }
 
     @Test
     public void onStop() throws Exception {

@@ -63,7 +63,7 @@ public class ChartPresenterTests {
         verify(view).showWait();
         verify(interactor).getProductsInChart();
         verify(view).removeWait();
-        verify(view).onChartEmpty();
+//        verify(view).onChartEmpty();
     }
 
     @Test
@@ -76,7 +76,7 @@ public class ChartPresenterTests {
         verify(view).showWait();
         verify(interactor).getProductsInChart();
         verify(view).removeWait();
-        verify(view).onChartEmpty();
+//        verify(view).onChartEmpty();
 
     }
 

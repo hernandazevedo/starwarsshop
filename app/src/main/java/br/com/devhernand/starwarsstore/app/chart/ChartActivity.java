@@ -65,10 +65,10 @@ public class ChartActivity extends BaseActivity implements ChartView {
         btnGoToPayment = (AppCompatButton) findViewById(R.id.btnGoToPayment);
     }
 
-    @Override
-    public void onChartEmpty() {
-        showToast(getString(R.string.chart_empty_message));
-    }
+//    @Override
+//    public void onChartEmpty() {
+//        showToast(getString(R.string.chart_empty_message));
+//    }
 
     @Override
     public void onChartSuccess(List<Product> productList) {

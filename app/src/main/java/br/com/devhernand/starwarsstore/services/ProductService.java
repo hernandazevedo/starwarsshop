@@ -58,12 +58,10 @@ public class ProductService {
     }
 
     public void addToChart(Product product,final AddToChartCallback callback) {
-        try {
-            productList.add(product);
-            callback.onSucess();
-        }catch (Exception e){
-            callback.onError(e);
-        }
+
+        productList.add(product);
+        callback.onSucess();
+
     }
 
     public void clearCart() {
@@ -75,15 +73,11 @@ public class ProductService {
     }
 
     public void clearCart(final ClearChartCallback callback) {
-        try {
-            productList.clear();
-            if(callback != null)
-                callback.onSucess();
-        }catch (Exception e){
 
-            if(callback != null)
-                callback.onError(e);
-        }
+        productList.clear();
+        if(callback != null)
+            callback.onSucess();
+
     }
 
     public List<Product> getProductsInChart() {
@@ -99,7 +93,7 @@ public class ProductService {
     public interface AddToChartCallback {
 
         void onSucess();
-        void onError(Exception e);
+//        void onError(Exception e);
     }
 
     public interface ClearChartCallback extends  AddToChartCallback {

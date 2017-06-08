@@ -74,7 +74,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
 
-    //    compile 'de.greenrobot:greendao:2.1.0' todo migrar para greendao futuramente
+    //    compile 'de.greenrobot:greendao:2.1.0' //TODO migrate to Greendao
     compile 'com.alihafizji.creditcardedittext:library:+@aar'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.google.code.gson:gson:2.6.2'
