@@ -1,8 +1,11 @@
 package br.com.devhernand.starwarsstore.app.main;
 
 import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingPolicies;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.RootMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.rule.UiThreadTestRule;
@@ -18,6 +21,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
+import java.util.concurrent.TimeUnit;
+
+import br.com.devhernand.starwarsstore.test.utils.ElapsedTimeIdlingResource;
 import br.com.devhernand.starwarsstore.test.utils.MainActivityIdlingResource;
 import br.com.devhernand.starwarsstore.test.utils.MyViewMatcher;
 import br.com.devhernand.starwarsstore.test.utils.MyViewAction;
@@ -26,6 +32,7 @@ import br.com.devhernand.starwarsstore.test.utils.RecyclerViewItemCountAssertion
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -56,6 +63,11 @@ public class StarWarsStoreBehaviorTests {
     public void registerIntentServiceIdlingResource() {
 
         unlockScreen();
+
+        // Make sure Espresso does not time out
+        IdlingPolicies.setMasterPolicyTimeout(60, TimeUnit.SECONDS);
+        IdlingPolicies.setIdlingResourceTimeout(30, TimeUnit.SECONDS);
+
         //Wait the activity to start completely
         MainActivity activity = mActivityRule.getActivity();
         idlingResource = new MainActivityIdlingResource(activity);
@@ -106,9 +118,15 @@ public class StarWarsStoreBehaviorTests {
         onView(withId(R.id.etCvv)).check(matches(isDisplayed()));
         onView(withId(R.id.etCvv)).perform(click(), replaceText("123"));
         onView(withId(R.id.btnPay)).check(matches(isDisplayed()));
-        onView(withId(R.id.btnPay)).perform(click());
+        onView(withId(R.id.btnPay)).perform(scrollTo(),click());
 
-        onView(withText(R.string.btn_ok)).perform(click());
+
+        IdlingResource timeOutResource = ElapsedTimeIdlingResource.waitFor(8000L);  // waiting for 8 seconds
+
+        onView(withText(R.string.btn_ok)).check(matches(isDisplayed())).perform(click());
+        // Clean up
+        Espresso.unregisterIdlingResources(timeOutResource);
+//        onView(withText(R.string.btn_ok)).perform(click());
 
         /** **
          *
@@ -143,5 +161,7 @@ public class StarWarsStoreBehaviorTests {
             throwable.printStackTrace();
         }
     }
+
+
 
 }
