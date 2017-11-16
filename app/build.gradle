@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 //apply plugin: 'jacoco-android'
-apply plugin: 'jacoco-everywhere'
-
+//apply plugin: 'jacoco-everywhere'
+apply plugin: 'maven'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -44,6 +44,17 @@ android {
     }
 }
 
+sourceSets {
+    javaPoet {
+        java.srcDir 'src/main/java'
+    }
+    main {
+        java.srcDir "${buildDir}/generated/source"
+    }
+    codeGen {
+        java.srcDir "${buildDir}/generated/source"
+    }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
