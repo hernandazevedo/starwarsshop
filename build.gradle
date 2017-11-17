@@ -45,27 +45,56 @@ ext {
     rulesVersion = "0.5"
     espressoVersion = "2.2.2"
 }
+subprojects {
+    apply plugin: 'jacoco'
+    ext {
+        isJavaLib = false
+    }
+}
 
 
+//def projects = subprojects.findAll { it.path != ':app' }
+def projects = subprojects.findAll()
+
+task jacocoMerge(type: JacocoMerge) {
+    projects.each { subproject ->
+        executionData subproject.tasks.withType(Test)
+    }
+    doFirst {
+        executionData = files(executionData.findAll { it.exists() })
+    }
+}
 // get class dirs for project dependencies
 FileTree getJacocoClassDirs(Set<Project> projects) {
-    def classDirs = fileTree(dir: "${buildDir}/classes/debug", exclude: '**/R*.class')
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def classDirs = files().asFileTree
     projects.each {
+
         def projBuildDir = it.buildDir
-        classDirs += fileTree(dir: "${projBuildDir.absolutePath}/classes/release", exclude: '**/R*.class')
+        def isJavaLib = "$it.isJavaLib"
+
+        if(isJavaLib != null && Boolean.parseBoolean(isJavaLib)){
+            println " $it.name is java library"
+            classDirs += fileTree(dir: "${projBuildDir.absolutePath}/classes/java/main")
+        }else {
+            println " $it.name is not a java library"
+            classDirs += fileTree(dir: "${projBuildDir.absolutePath}/intermediates/classes/debug", exclude: fileFilter)
+        }
+
     }
     return classDirs
 }
-
-// get executionData for projects
-FileCollection getJacocoExecutionData(Set<Project> projects) {
-    def srcDirs = new ArrayList<GString>()
-    projects.each {
-        def projDir = it.projectDir.absolutePath
-        srcDirs.add("${projDir}/jacoco/test.exec")
-    }
-    return files(srcDirs)
-}
+//
+//// get executionData for projects
+//FileTree getJacocoExecutionData(Set<Project> projects) {
+//
+//    def classDirs = fileTree("${buildDir}").include("**/jacoco/*.exec")
+//    projects.each {
+//        def projDir = it.projectDir.absolutePath
+//        classDirs += fileTree(projDir).include("**/.build/jacoco/*.exec")
+//    }
+//    return classDirs
+//}
 
 
 // get source dirs for project dependencies
@@ -73,40 +102,41 @@ List getJacocoSrcDirs(Set<Project> projects) {
     def srcDirs = new ArrayList()
     projects.each {
         def projDir = it.projectDir.absolutePath
-        srcDirs.add("${projDir}/src")
+        srcDirs.add("${projDir}/src/main/java")
     }
     return srcDirs
 }
 
 // generate coverage report for this project and all its project dependencies
-task jacocoTestCoverageReport(type: JacocoReport,group: 'Coverage reports') {
+task jacocoTestCoverageReport(type: JacocoReport)  {
     description = 'Generates an aggregate report from all subprojects'
+
+    dependsOn jacocoMerge
+    executionData jacocoMerge.destinationFile
 
     // Gather execution data from all subprojects
     // (change this if you e.g. want to calculate unit test/integration test coverage separately)
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-//    executionData = getJacocoExecutionData(subprojects)
+//    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+//    executionData = getJacocoExecutionData(projects)
 
     // Add all relevant sourcesets from the subprojects
-    def jacocoSrcDirs = files(getJacocoSrcDirs(subprojects));
+    def jacocoSrcDirs = files(getJacocoSrcDirs(projects));
     sourceDirectories = jacocoSrcDirs
     additionalSourceDirs = jacocoSrcDirs
-    classDirectories = getJacocoClassDirs(subprojects)
+    classDirectories = getJacocoClassDirs(projects)
 
     reports {
         xml.enabled true
         html.enabled true
-
-
     }
 }
-
+// always run the tests before generating the report
 jacocoTestCoverageReport.dependsOn {
-    subprojects*.test
+    projects*.test
 }
 
 coveralls {
-    sourceDirs = getJacocoSrcDirs(subprojects).flatten()
+    sourceDirs = getJacocoSrcDirs(projects).flatten()
     jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestCoverageReport/jacocoTestCoverageReport.xml"
 }
 

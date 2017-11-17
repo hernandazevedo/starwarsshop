@@ -70,18 +70,18 @@ before_install:
     
  
 script:
-  #- ./gradlew build jacocoTestReport assembleAndroidTest # With the jacoco-everywhere plugin its not necessary to run both commands.
+  - ./gradlew build jacocoTestReport assembleAndroidTest # With the jacoco-everywhere plugin its not necessary to run both commands.
   
-#  - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi armeabi-v7a
   
-#  - emulator -avd test -no-skin -no-audio -no-window &
+  - emulator -avd test -no-skin -no-audio -no-window &
 
-#  - android-wait-for-emulator
+  - android-wait-for-emulator
 
-#  - adb shell input keyevent 82 &
+  - adb shell input keyevent 82 &
   
-  #- "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
   - "./gradlew build coveralls --continue"
 after_success:
-  #- bash <(curl -s https://codecov.io/bash) -t 20b4f385-7d00-40db-bd52-89600cf6320d
+  - bash <(curl -s https://codecov.io/bash) -t 20b4f385-7d00-40db-bd52-89600cf6320d
   

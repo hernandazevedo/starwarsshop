@@ -44,17 +44,6 @@ android {
     }
 }
 
-sourceSets {
-    javaPoet {
-        java.srcDir 'src/main/java'
-    }
-    main {
-        java.srcDir "${buildDir}/generated/source"
-    }
-    codeGen {
-        java.srcDir "${buildDir}/generated/source"
-    }
-}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
