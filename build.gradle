@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin: "com.github.kt3k.coveralls"
-apply plugin: "jacoco"
+apply from: 'coverage.gradle'
 buildscript {
     repositories {
         jcenter()
@@ -11,8 +11,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
-        //classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
-        classpath 'com.trickyandroid:jacoco-everywhere:0.2.1'
+
         classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -45,99 +44,18 @@ ext {
     rulesVersion = "0.5"
     espressoVersion = "2.2.2"
 }
-subprojects {
-    apply plugin: 'jacoco'
-    ext {
-        isJavaLib = false
-    }
-}
 
 
-//def projects = subprojects.findAll { it.path != ':app' }
-def projects = subprojects.findAll()
 
-task jacocoMerge(type: JacocoMerge) {
-    projects.each { subproject ->
-        executionData subproject.tasks.withType(Test)
-    }
-    doFirst {
-        executionData = files(executionData.findAll { it.exists() })
-    }
-}
-// get class dirs for project dependencies
-FileTree getJacocoClassDirs(Set<Project> projects) {
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def classDirs = files().asFileTree
-    projects.each {
-
-        def projBuildDir = it.buildDir
-        def isJavaLib = "$it.isJavaLib"
-
-        if(isJavaLib != null && Boolean.parseBoolean(isJavaLib)){
-            println " $it.name is java library"
-            classDirs += fileTree(dir: "${projBuildDir.absolutePath}/classes/java/main")
-        }else {
-            println " $it.name is not a java library"
-            classDirs += fileTree(dir: "${projBuildDir.absolutePath}/intermediates/classes/debug", exclude: fileFilter)
-        }
-
-    }
-    return classDirs
-}
-//
-//// get executionData for projects
-//FileTree getJacocoExecutionData(Set<Project> projects) {
-//
-//    def classDirs = fileTree("${buildDir}").include("**/jacoco/*.exec")
-//    projects.each {
-//        def projDir = it.projectDir.absolutePath
-//        classDirs += fileTree(projDir).include("**/.build/jacoco/*.exec")
-//    }
-//    return classDirs
-//}
-
-
-// get source dirs for project dependencies
-List getJacocoSrcDirs(Set<Project> projects) {
+coveralls {
+    def projects = subprojects.findAll()
     def srcDirs = new ArrayList()
     projects.each {
         def projDir = it.projectDir.absolutePath
         srcDirs.add("${projDir}/src/main/java")
     }
-    return srcDirs
-}
-
-// generate coverage report for this project and all its project dependencies
-task jacocoTestCoverageReport(type: JacocoReport)  {
-    description = 'Generates an aggregate report from all subprojects'
-
-    dependsOn jacocoMerge
-    executionData jacocoMerge.destinationFile
-
-    // Gather execution data from all subprojects
-    // (change this if you e.g. want to calculate unit test/integration test coverage separately)
-//    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-//    executionData = getJacocoExecutionData(projects)
-
-    // Add all relevant sourcesets from the subprojects
-    def jacocoSrcDirs = files(getJacocoSrcDirs(projects));
-    sourceDirectories = jacocoSrcDirs
-    additionalSourceDirs = jacocoSrcDirs
-    classDirectories = getJacocoClassDirs(projects)
-
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
-}
-// always run the tests before generating the report
-jacocoTestCoverageReport.dependsOn {
-    projects*.test
-}
-
-coveralls {
-    sourceDirs = getJacocoSrcDirs(projects).flatten()
-    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestCoverageReport/jacocoTestCoverageReport.xml"
+    sourceDirs = srcDirs.flatten()
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestCoverageReport.xml"
 }
 
 tasks.coveralls {

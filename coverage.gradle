@@ -1,0 +1,168 @@
+def jacocoVersion = '0.7.9'
+def jacocoGroup = 'org.jacoco'
+def jacocoAnt = 'org.jacoco.ant'
+def jacocoAgent = 'org.jacoco.agent'
+
+configurations {
+    jacoco
+    jacocoRuntime
+}
+
+dependencies {
+    jacoco group: jacocoGroup, name: jacocoAnt, version: jacocoVersion, classifier: 'nodeps'
+    jacocoRuntime group: jacocoGroup, name: jacocoAgent, version: jacocoVersion, classifier: 'runtime'
+}
+
+allprojects {
+    configurations {
+        jacoco
+        jacocoRuntime
+    }
+}
+
+subprojects{
+
+    ext {
+        isJavaLib = false
+    }
+
+    plugins.withId('java') {
+        ext {
+            isJavaLib = true
+        }
+    }
+
+    dependencies {
+        //The code below is applied to all subprojects that have the maven plugin
+        plugins.withType(MavenPlugin) {
+            jacoco group: jacocoGroup, name: jacocoAnt, version: jacocoVersion, classifier: 'nodeps'
+            jacocoRuntime group: jacocoGroup, name: jacocoAgent, version: jacocoVersion, classifier: 'runtime'
+        }
+    }
+    plugins.withType(MavenPlugin) {
+
+        /**
+         * Offline instrumentation to avoid the bug with powermock
+         */
+        task instrument(group: "build",description: "Generates an offline instrumentation of the classes at '$buildDir/classes-instrumented'") {
+            ext.outputDir = project.buildDir.path + '/classes-instrumented'
+
+            def fileSet
+            def projBuildDir = project.buildDir
+            def isJavaLib = project.isJavaLib
+            def dependencyTask
+
+            if(isJavaLib){
+                fileSet = "${projBuildDir.absolutePath}/classes/java/main"
+                dependencyTask = "classes"
+            }else {
+                fileSet = "${projBuildDir.absolutePath}/intermediates/classes/debug"
+                dependencyTask = "assemble"
+            }
+
+            dependsOn dependencyTask
+
+            doLast {
+                ant.taskdef(name: 'instrument',
+                        classname: 'org.jacoco.ant.InstrumentTask',
+                        classpath: configurations.jacoco.asPath)
+                ant.instrument(destdir: outputDir) {
+                    fileset(dir: "$fileSet")
+                }
+            }
+        }
+
+        gradle.taskGraph.whenReady { graph ->
+            if (graph.hasTask(instrument)) {
+                tasks.withType(Test) {
+                    doFirst {
+                        //TODO the systemProperty below is being initialized with a wrong path. Despite of it, everything works fine.
+                        systemProperty 'jacoco-agent.destfile', buildDir.path + '/jacoco/tests.exec'
+                        classpath = files(instrument.outputDir) + classpath + configurations.jacocoRuntime
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Excluding the demo app from coverage
+def projects = subprojects.findAll()
+
+// get class dirs for project dependencies
+def getJacocoClassDirs = { Set<Project> projectszz ->
+        def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+        def classDirs = files().asFileTree
+        projectszz.each {
+            def projBuildDir = it.buildDir
+            def isJavaLib = it.isJavaLib
+
+            if (isJavaLib) {
+                classDirs += fileTree(dir: "${projBuildDir.absolutePath}/classes/java/main")
+            } else {
+                classDirs += fileTree(dir: "${projBuildDir.absolutePath}/intermediates/classes/debug", exclude: fileFilter)
+            }
+
+        }
+        return classDirs
+    }
+
+// get source dirs for project dependencies
+def getJacocoSrcDirs = { Set<Project> projectszz ->
+    def srcDirs = new ArrayList()
+    projectszz.each {
+        def projDir = it.projectDir.absolutePath
+        srcDirs.add("${projDir}/src/main/java")
+    }
+    return srcDirs
+}
+
+// get executionData for projects
+def getJacocoExecutionData = { Set<Project> projectszz ->
+
+    def classDirs = fileTree("${buildDir}").include("**/jacoco/*.exec")
+    projectszz.each {
+        def projDir = it.projectDir.absolutePath
+        classDirs += fileTree(projDir).include("**/.build/jacoco/*.exec")
+    }
+    return classDirs
+}
+
+task jacocoTestCoverageReport(group: "verification",description: "Generates an agregate coverage report for all modules") {
+
+    doLast {
+        ant.taskdef(name: 'jacocoTestCoverageReport',
+                classname: 'org.jacoco.ant.ReportTask',
+                classpath: configurations.jacoco.asPath)
+        ant.jacocoTestCoverageReport() {
+            executiondata {
+                def executionFiles = getJacocoExecutionData(projects)
+                executionFiles.each {
+                    ant.file(file: it.absolutePath)
+                }
+            }
+            structure(name: 'Pos Android TestCoverage') {
+                def fileSets = getJacocoSrcDirs(projects)
+                def classSet = getJacocoClassDirs(projects)
+
+                sourcefiles {
+                    fileSets.each {
+                        fileset(dir: it)
+                    }
+                }
+                classfiles {
+                    classSet.each {
+                        ant.file(file: it.absolutePath)
+                    }
+                }
+            }
+            html(destdir: "${buildDir.path}/reports/jacoco")
+            xml(destfile: "${buildDir.path}/reports/jacoco/jacocoTestCoverageReport.xml")
+        }
+    }
+}
+
+// always run the tests before generating the report
+jacocoTestCoverageReport.dependsOn {
+    [projects*.test, projects*.instrument]
+}
