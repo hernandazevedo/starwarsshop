@@ -14,13 +14,13 @@ You can use [jacoco-android-gradle-plugin](https://github.com/arturdm/jacoco-and
 to create appropriate gradle tasks and run this command to generate the reports:
 
 ```
-./gradlew jacocoTestReport
+./gradlew jacocoTestCoverageReport
 ```
 
 Running the command below generates the reports: 
 
 ```
-./gradlew connectedCheck
+./gradlew coveralls
 ```
 
 # Configure Travis CI
