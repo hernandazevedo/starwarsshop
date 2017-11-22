@@ -8,16 +8,18 @@ Android - MVP + Dagger 2 + RxJava + Retrofit2 - Test Coverage
 This project is a Proof of concept for the Model View Presenter architecture for Android.
 
 # Unit tests coverage reports
-
+<!--
 Codecov parses uploaded test coverage reports but your project is required to generate them first.
 You can use [jacoco-android-gradle-plugin](https://github.com/arturdm/jacoco-android-gradle-plugin)
 to create appropriate gradle tasks and run this command to generate the reports:
+-->
 
+Run this command to generate the reports coverage files:
 ```
 ./gradlew jacocoTestCoverageReport
 ```
 
-Running the command below generates the reports: 
+Running the command below generate and send the report files: 
 
 ```
 ./gradlew coveralls
