@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/hernandazevedo/starwarsshop.svg?branch=master)](https://travis-ci.org/hernandazevedo/starwarsshop)
+[![Coverage Status](https://coveralls.io/repos/github/hernandazevedo/starwarsshop/badge.svg?branch=master)](https://coveralls.io/github/hernandazevedo/starwarsshop?branch=master)
 <!--[![codecov.io](https://codecov.io/gh/hernandazevedo/starwarsshop/branch/master/graph/badge.svg)](https://codecov.io/gh/hernandazevedo/starwarsshop)
 -->
-[![Coverage Status](https://coveralls.io/repos/github/hernandazevedo/starwarsshop/badge.svg?branch=master)](https://coveralls.io/github/hernandazevedo/starwarsshop?branch=master)
 # starwarsshop
 Android - MVP + Dagger 2 + RxJava + Retrofit2 - Test Coverage
 
